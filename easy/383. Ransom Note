@@ -1,0 +1,18 @@
+class Solution {
+  bool canConstruct(String ransomNote, String magazine) {
+    Map<String, int> magazineCharCount = {};
+
+    for (var char in magazine.split("")) {
+      magazineCharCount[char] = (magazineCharCount[char] ?? 0) + 1;
+    }
+
+    for (var char in ransomNote.split("")) {
+      if (magazineCharCount[char] == null || magazineCharCount[char]! <= 0) {
+        return false; 
+      }
+      magazineCharCount[char] = magazineCharCount[char]! - 1;
+    }
+
+    return true; 
+  }
+}
